@@ -18,7 +18,7 @@ Request details bring together status, ownership, comments, internal notes, and 
 Install Node.js and npm, then:
 
 ```sh
-git clone https://github.com/anushaxrama/flowops.git
+git clone https://github.com/anusharama100/flowops.git
 cd flowops
 npm install
 npm run dev
