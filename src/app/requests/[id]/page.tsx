@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/auth-context'
@@ -82,19 +82,16 @@ export default function RequestDetailPage() {
 
   const requestId = params.id as string
 
-  const loadRequest = () => {
-    const req = store.getRequest(requestId)
-    if (req) {
-      setRequest(req)
-    }
+  const loadRequest = useCallback(() => {
+    setRequest(store.getRequest(requestId) ?? null)
     setIsLoading(false)
-  }
+  }, [requestId])
 
   useEffect(() => {
     if (user && requestId) {
       loadRequest()
     }
-  }, [user, requestId])
+  }, [user, requestId, loadRequest])
 
   const handleAddComment = async () => {
     if (!user || !request || !comment.trim()) return

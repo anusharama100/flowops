@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/auth-context'
@@ -44,17 +44,15 @@ export default function ApprovalsPage() {
   const [actionType, setActionType] = useState<'approve' | 'reject' | 'needs-info' | null>(null)
   const [reason, setReason] = useState('')
 
-  useEffect(() => {
-    if (user) {
-      loadRequests()
-    }
+  const loadRequests = useCallback(() => {
+    if (!user) return
+    setRequests(store.getRequestsByApprover(user.id))
+    setIsLoading(false)
   }, [user])
 
-  const loadRequests = () => {
-    const pendingApprovals = store.getRequestsByApprover(user!.id)
-    setRequests(pendingApprovals)
-    setIsLoading(false)
-  }
+  useEffect(() => {
+    loadRequests()
+  }, [loadRequests])
 
   const handleAction = () => {
     if (!user || !selectedRequest || !actionType) return

@@ -20,7 +20,7 @@ Install Node.js and npm, then:
 ```sh
 git clone https://github.com/anusharama100/flowops.git
 cd flowops
-npm install
+npm ci
 npm run dev
 ```
 
@@ -49,3 +49,7 @@ The `/design-system` and `/docs` routes collect UI patterns and project document
 ## Scope
 
 Role switching demonstrates interface permissions; it is not server-enforced access control. Local demo state does not provide shared persistence, durable audit records, or real notifications. A production version would need those services before handling employee requests.
+
+## Latest local check
+
+See [local verification](docs/LOCAL_VERIFICATION.md) for the November 5, 2026 setup, runtime checks, and remaining test boundaries.
