@@ -1,6 +1,6 @@
 # FlowOps
 
-FlowOps is an interactive prototype for managing internal requests: who owns them, what needs approval, and what happens next. It follows a request across four roles so the handoffs are visible from both sides of the process.
+An internal-request prototype that follows a request from submission through approval and resolution. I used four roles—requester, approver, agent, and admin—to explore where ownership and handoffs become unclear.
 
 The focus is product and workflow design. Authentication is simulated, and request data lives in a browser-side store rather than a shared backend.
 
