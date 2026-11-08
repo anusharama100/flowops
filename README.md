@@ -1,21 +1,21 @@
 # FlowOps
 
-An internal-request prototype that follows a request from submission through approval and resolution. I used four roles—requester, approver, agent, and admin—to explore where ownership and handoffs become unclear.
+A Next.js prototype for submitting, approving, and resolving internal requests. I designed the same request from four viewpoints: requester, approver, agent, and admin.
 
-The focus is product and workflow design. Authentication is simulated, and request data lives in a browser-side store rather than a shared backend.
+**Next.js 14 · React · TypeScript · Tailwind CSS · React Hook Form · Zod**
 
-## Explore the workflow
+## Try the workflow
 
-1. Use the header role switcher to become a requester and create a request at `/requests/new`.
-2. Switch to approver and review the approval queue at `/approvals`.
-3. Switch to agent to assign and resolve work at `/queue`.
-4. Open the admin views to inspect request types, workflows, SLA policies, and canned responses.
+1. Create a request at `/requests/new`.
+2. Switch to approver in the header and open `/approvals`.
+3. Switch to agent to assign and resolve it at `/queue`.
+4. Open the admin screens to explore request types, workflows, and SLA policies.
 
-Request details bring together status, ownership, comments, internal notes, and an activity timeline. The form system uses configurable fields, and the queue makes priority and SLA risk visible.
+The request detail page brings status, ownership, comments, and activity into one view. Use the header's reset control to return to the seeded records.
 
 ## Run locally
 
-Install Node.js and npm, then:
+Install Node.js and npm.
 
 ```sh
 git clone https://github.com/anusharama100/flowops.git
@@ -24,32 +24,22 @@ npm ci
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). The header includes a reset control for returning to the seeded demo data.
+Open [localhost:3000](http://localhost:3000).
 
 ```sh
 npm run build
 npm run lint
 ```
 
-## How it is built
+## Code to start with
 
-Next.js 14 and TypeScript provide the application structure. Tailwind CSS and Radix-based components handle the UI; React Hook Form and Zod support the forms.
+- `src/app/requests/` — forms, list, and request details.
+- `src/app/approvals/` and `src/app/queue/` — approval and agent flows.
+- `src/lib/data/` — seeded records and the browser-side store.
+- `src/contexts/auth-context.tsx` — demo identity and role switching.
 
-| Location | Responsibility |
-| --- | --- |
-| `src/app/requests/` | Request creation, list, and detail views |
-| `src/app/approvals/` and `src/app/queue/` | Approval and agent workflows |
-| `src/app/admin/` | Configuration screens |
-| `src/lib/data/` | Seed records and demo store |
-| `src/contexts/auth-context.tsx` | Demo identity and role switching |
-| `src/types/` | Request and workflow types |
+## Project status
 
-The `/design-system` and `/docs` routes collect UI patterns and project documentation.
+This is a frontend prototype. Role switching is simulated, and the data store runs in the browser. It does not provide server-enforced permissions, shared persistence, real notifications, or a durable audit log.
 
-## Scope
-
-Role switching demonstrates interface permissions; it is not server-enforced access control. Local demo state does not provide shared persistence, durable audit records, or real notifications. A production version would need those services before handling employee requests.
-
-## Latest local check
-
-See [local verification](docs/LOCAL_VERIFICATION.md) for the November 5, 2026 setup, runtime checks, and remaining test boundaries.
+See [local verification](docs/LOCAL_VERIFICATION.md) for the recorded setup checks and what remains untested.
